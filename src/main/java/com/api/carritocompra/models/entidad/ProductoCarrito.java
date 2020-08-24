@@ -1,9 +1,9 @@
 package com.api.carritocompra.models.entidad;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 
 import javax.persistence.*;
+
 
 
 @Entity
@@ -15,17 +15,15 @@ public class ProductoCarrito {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @ManyToOne(fetch = FetchType.LAZY,optional = false)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_product", referencedColumnName = "id")
-    @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
-    private Producto producto;
+    private Producto  producto;
 
-    @ManyToOne(fetch = FetchType.LAZY,optional = false)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_cart", referencedColumnName = "id")
-    @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
-    private EstadoCarrito carrito;
+
+    private Carrito carrito;
 
     private int cantidad;
-
 
 }

@@ -1,7 +1,6 @@
 package com.api.carritocompra.models.servicio;
 
 import com.api.carritocompra.models.dao.ProductoCarritoRepositorio;
-import com.api.carritocompra.models.dao.ProductoRepositorio;
 import com.api.carritocompra.models.entidad.ProductoCarrito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,6 +16,11 @@ public class ProductoCarritoImp implements ProductoCarritoServicio {
 
     @Override
     public void guardarProductoCarritoCompra(ProductoCarrito productCart) {
+        ProductoCarrito productoCarritoActual = productoCarritoRepositorio.findByCarritoAndProducto(productCart.getCarrito(), productCart.getProducto());
+        if (productoCarritoActual!=null){
+            productoCarritoActual.setCantidad(productCart.getCantidad() + productoCarritoActual.getCantidad());
+            productCart = productoCarritoActual;
+        }
         this.productoCarritoRepositorio.save(productCart);
     }
 

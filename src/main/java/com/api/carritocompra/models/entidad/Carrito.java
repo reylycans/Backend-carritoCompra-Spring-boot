@@ -5,10 +5,11 @@ import lombok.Data;
 import javax.persistence.*;
 import java.io.Serializable;
 
+
 @Entity
 @Data
 @Table(name = "cart")
-public class EstadoCarrito implements Serializable {
+public class Carrito implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(unique = true)
@@ -16,4 +17,6 @@ public class EstadoCarrito implements Serializable {
 
     @Column(nullable = false)
     private String estado;
+
+
 }
